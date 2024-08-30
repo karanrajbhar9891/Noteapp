@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        border: 2px solid black;
+        height: 97vh;
+        width: 218vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .smallbox {
+        background-color: rgb(138, 201, 240);
+        height: 70vh;
+        width: 70vh;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+      }
+      .search {
+        display: flex;
+        flex-direction: column;
+      }
+      .search > input {
+        margin: 10px 70px 10px 70px;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .search > button {
+        width: 100px;
+        margin: auto;
+        padding: 10px;
+        margin-top: 40px;
+        background-color: rgb(73, 73, 229);
+        border-radius: 7px;
+      }
+      .search > button:hover {
+        background-color: rgb(5, 5, 113);
+        color: white;
+      }
+      #signup {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="smallbox">
+        <center><h1>Login Here !</h1></center>
+        <div class="search">
+          <input type="email" id="email" placeholder="Enter Your Email" />
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter Your password"
+          />
+          <button id="submit">Submit</button>
+        </div>
+        <div>
+          <center>
+            <h3 id="signup">
+              click here to <a href="/html/signup.html">Signup</a>
+            </h3>
+          </center>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let submit = document.getElementById("submit");
+    submit.addEventListener("click", async () => {
+      let data = await login(email.value, password.value);
+      console.log("data", data);
+      alert("login successfull");
+      let token = localStorage.setItem("token", data.token);
+      let userDetails = localStorage.setItem(
+        "userDetails",
+        JSON.stringify(data.userdetails)
+      );
+      if (data.msg == "login successfull") {
+        window.location.href = "./../index.html";
+      }
+      console.log("hello", email.value, password.value);
+    });
+    const login = async (email, password) => {
+      try {
+        let data = await fetch("http://localhost:1000/user/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Corrected the header name
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+        let res = await data.json();
+        console.log("res", res);
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    // let user = {
+    //   email: email.value,
+    //   password: password.value,
+    // };
+  </script>
+</html>

@@ -1,0 +1,130 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  /* border: 2px solid red; */
+  padding: 15px 30px 15px 30px;
+  background-color: rgb(83, 83, 232);
+  border-radius: 16px;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+.navRight {
+  width: 60%;
+  display: flex;
+  /* border: 2px solid black; */
+  font-weight: 500;
+  font-size: x-large;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+}
+aside {
+  /* border: 2px solid red; */
+  width: 25%;
+  text-align: center;
+  height: 80vh;
+}
+.note {
+  font-weight: 700;
+  border-bottom: 2px solid rgb(252, 249, 249);
+  font-size: xx-large;
+  color: white;
+}
+.sideancer {
+  /* border: 2px solid red; */
+  height: 100%;
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+  justify-content: baseline;
+  gap: 20px;
+  margin-left: 50px;
+}
+.sideancer > a {
+  padding: 20px;
+  /* border: 2px solid red; */
+  display: block;
+  background-color: rgb(100, 100, 243);
+  border-radius: 10px;
+  width: 80%;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.sideancer > a:hover {
+  background-color: rgb(17, 17, 202);
+  scale: 1.1;
+  margin-left: 10px;
+}
+.mobile {
+  display: none;
+}
+@media screen and (max-width: 550px) {
+  .mobile {
+    display: block;
+  }
+  .navRight {
+    display: none;
+  }
+}
+#hamburgur {
+  width: 30px;
+}
+#content {
+  display: none;
+  position: relative;
+  height: 150px;
+  background-color: aliceblue;
+  border: 2px solid red;
+  padding: 0px;
+}
+#content > div {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  margin: 20px;
+}
+.mobilediv {
+  text-decoration: underline;
+}
+#main {
+  /* border: 2px solid red; */
+  width: 75%;
+  height: 600px;
+  overflow: auto;
+}
+.card {
+  width: 95%;
+  /* border: 2px solid black; */
+  padding: 10px;
+  margin: 10px;
+  background-image: linear-gradient(
+    to right,
+    rgb(82, 82, 241),
+    rgb(241, 236, 222)
+  );
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+h2 {
+  font-size: xx-large;
+  margin: 7px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+p {
+  font-size: larger;
+}

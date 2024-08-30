@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .main {
+      border: 2px solid black;
+      height: 97vh;
+      width: 218vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(122, 225, 225);
+    }
+    .box {
+      /* background-color: rgb(138, 201, 240); */
+      height: 60vh;
+      width: 60vh;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    }
+    .field > input {
+      margin: 10px 90px 10px 90px;
+      padding: 20px 70px 0px 70px;
+      border-radius: 5px;
+    }
+  </style>
+  <body>
+    <div class="main">
+      <div class="box">
+        <div class="field">
+          <input id="title" type="text" />
+        </div>
+        <div class="field">
+          <input id="des" type="text" />
+        </div>
+
+        <button id="submit">submit</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    let button = document.getElementById("submit");
+    let title = document.getElementById("title");
+    let des = document.getElementById("des");
+    button.addEventListener("click", async () => {
+      console.log(title.value, des.value);
+      let user = JSON.parse(localStorage.getItem("userDetails"));
+      let token = localStorage.getItem("token");
+      let obj = {
+        title: title.value,
+        description: des.value,
+        username: user.name,
+        userid: user._id,
+      };
+      console.log(obj, "obj");
+      try {
+        let data = await fetch("http://localhost:1000/post/post", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+            authorization: token,
+          },
+          body: JSON.stringify(obj),
+        });
+        console.log(data, "data");
+        let res = await data.json();
+        console.log("res", res);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+</html>

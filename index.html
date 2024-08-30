@@ -6,8 +6,74 @@
     <title>Document</title>
     <link rel="stylesheet" href="./index.css" />
   </head>
-  <body>
-    <div>Noteapp</div>
+  <body
+    style="
+      background-image: url(https://w0.peakpx.com/wallpaper/586/84/HD-wallpaper-blue-sunset-sunset-nature-water-blue.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    "
+  >
+    <nav>
+      <div>
+        <h1>NOTEAPP</h1>
+      </div>
+      <div class="navRight">
+        <a href="/index.html">Home</a>
+        <a href="/html/profile.html">Profile</a>
+        <a href="/html/login.html" id="login">Login/Signup</a>
+      </div>
+      <div class="mobile">
+        <img src="./images/navigation-bar.png" id="hamburgur" />
+      </div>
+    </nav>
+    <div id="content">
+      <div>
+        <a href="/index.html" class="mobilediv">Home</a>
+        <a href="/html/profile.html" class="mobilediv">Profile</a>
+        <a href="/html/login.html" id="login" class="mobilediv">Login/Signup</a>
+      </div>
+    </div>
+    <section>
+      <aside>
+        <div class="note">NOTES</div>
+        <div class="sideancer">
+          <a href="#" id="shownote"> Show Notes </a>
+          <a href="#" id="mynote"> My Notes </a>
+          <a href="./html/Addnote.html"> Add Notes </a>
+        </div>
+      </aside>
+      <div id="main"></div>
+    </section>
+
+    <!-- <div>Noteapp</div> -->
   </body>
   <script src="./index.js"></script>
+  <script>
+    let icon = document.getElementById("hamburgur");
+    let data = document.getElementById("content");
+    icon.addEventListener("click", () => {
+      if (data.style.display === "block") {
+        data.style.display = "none";
+      } else {
+        data.style.display = "block";
+      }
+    });
+    let user = JSON.parse(localStorage.getItem("userDetails"));
+    console.log(user.name, "user");
+    let login = document.getElementById("login");
+    // console.log(login.innerText, "login");
+    if (user) {
+      login.innerText = "Logout";
+      login.setAttribute("href", "#");
+      login.addEventListener("click", () => {
+        localStorage.clear();
+        login.innerText = "Login/Signup";
+        // login.setAttribute("href", "/html/login.html");
+      });
+    } else {
+      login.innerText = "Login/Signup";
+      login.setAttribute("href", "/html/login.html");
+    }
+  </script>
 </html>
